@@ -1,0 +1,83 @@
+{
+  "name": "vscode-algoportal",
+  "displayName": "Algoportal",
+  "description": "Grab codes, algorithms and commands from your favorite sites as you work in vscode.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.67.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:vscode-algoportal.debugError",
+    "onView:vscode-algoportal-sidebar"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "vscode-algoportal-sidebar-view",
+          "title": "Algoportal",
+          "icon": "media/book.svg"
+        }
+      ]
+    },
+    "views": {
+      "vscode-algoportal-sidebar-view": [
+        {
+          "type": "webview",
+          "id": "vscode-algoportal-sidebar",
+          "name": "Algoportal",
+          "icon": "media/book.svg",
+          "contextualTitle": "Algoportal"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "vscode-algoportal.debugError",
+        "category": "Algoportal",
+        "title": "Debug an error"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "yarn run compile",
+    "compile": "tsc -p ./",
+    "watch": "concurrently \"rollup -c -w\" \"tsc -watch -p .\"",
+    "pretest": "yarn run compile && yarn run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-typescript": "^8.3.2",
+    "@tsconfig/svelte": "^3.0.0",
+    "@types/eslint": "^8.4.3",
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^10.17.60",
+    "@types/vscode": "^1.67.0",
+    "@typescript-eslint/eslint-plugin": "^5.21.0",
+    "@typescript-eslint/parser": "^5.21.0",
+    "@vscode/test-electron": "^2.1.3",
+    "concurrently": "^7.2.1",
+    "eslint": "^8.14.0",
+    "glob": "^8.0.1",
+    "mocha": "^9.2.2",
+    "rollup": "^2.3.4",
+    "rollup-plugin-svelte": "^6.0.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "svelte": "^3.48.0",
+    "svelte-check": "^2.7.2",
+    "svelte-preprocess": "^4.10.7",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "@types/estree": "^0.0.50",
+    "vscode": "^0.9.9"
+  }
+}
